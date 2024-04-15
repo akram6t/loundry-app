@@ -103,7 +103,7 @@ async function incomeChart(req, res) {
       ]).toArray();
       
 
-    console.log(counts);
+    // console.log(counts);
     res.json({
       message: 'orders income get',
       status: true,
