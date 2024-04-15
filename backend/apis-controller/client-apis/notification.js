@@ -19,21 +19,17 @@ router.post('/remove_notification', (req, res) => {
     const run = async () => {
         const client = new MongoClient(DB_URL);
         await client.connect();
-        console.log('remove notification...')
-        console.log(_id);
         const db = client.db();
         const collection = db.collection(Collections.NOTIFICATIONS);
         const result = await collection.deleteOne({ _id: new ObjectId(_id) });
 
         if (result.deletedCount === 1) {
-            console.log(result);
             res.json({
                 status: true,
                 message: 'notification remove successfully',
             });
 
         } else {
-            console.log(result);
             res.json({
                 status: false,
                 message: 'error',
@@ -59,7 +55,6 @@ router.post('/notification_status', (req, res) => {
     const run = async () => {
         const client = new MongoClient(DB_URL);
         await client.connect();
-        console.log(' notification status ...')
         const db = client.db();
         const collection = db.collection(Collections.NOTIFICATIONS);
         const result = await collection.updateOne(
@@ -70,7 +65,6 @@ router.post('/notification_status', (req, res) => {
             );
 
         if (result.modifiedCount) {
-            console.log(result.modifiedCount);
             res.json({
                 status: true,
                 message: 'Notification Read successfully',

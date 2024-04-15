@@ -16,7 +16,6 @@ router.get('/shops', (req, res) => {
     const run = async () => {
         const client = new MongoClient(DB_URL);
         await client.connect();
-        console.log('connect...');
         const db = client.db();
         const collection = db.collection(Collections.SHOPS);
         collection.find({}).sort({ default: -1 }).toArray().then((result, err) => {

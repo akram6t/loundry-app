@@ -54,11 +54,11 @@ app.use('/admin/apis', adminApisRouter);
 
 
 // Serve static files from the 'root/client/build' folder
-app.use(express.static(path.join(__dirname, 'client', 'build')));
+app.use(express.static(path.join(__dirname, 'frontend', 'build')));
 
 // Handle other routes by serving the index.html file
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+  res.sendFile(path.join(__dirname, 'frontend', 'build', 'index.html'));
 });
 
 

@@ -20,13 +20,11 @@ router.post('/add_query', (req, res) => {
     const run = async () => {
         const client = new MongoClient(DB_URL);
         await client.connect();
-        console.log('add query...')
         const db = client.db();
         const collection = db.collection(Collections.QUERIES);
         const insertData = { ...data, date: new Date().toISOString() }
         const result = await collection.insertOne(insertData);
         if (result.insertedId) {
-            console.log(result.insertedId);
             res.json({
                 status: true,
                 message: 'Thank you for your feedback.',
@@ -40,7 +38,6 @@ router.post('/add_query', (req, res) => {
             sendNotificationToServer(notify);
 
         } else {
-            console.log(result);
             res.json({
                 status: false,
                 message: 'error',

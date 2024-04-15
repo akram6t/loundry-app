@@ -20,7 +20,6 @@ router.get('/users/:uid', (req, res) => {
     const run = async () => {
         const client = new MongoClient(DB_URL);
         await client.connect();
-        console.log('get user...')
         const db = client.db();
         const collection = db.collection(Collections.USERS);
         const query = { uid: uid };
@@ -52,14 +51,12 @@ router.post('/create_user', (req, res) => {
     const run = async () => {
         const client = new MongoClient(DB_URL);
         await client.connect();
-        console.log('create user...')
         const db = client.db();
         const collection = db.collection(Collections.USERS);
         const insertData = { ...data, status: 'Active', date: new Date().toISOString() }
         const result = await collection.insertOne(insertData);
 
         if (result.insertedId) {
-            console.log(result.insertedId);
             // Add And Send Notification to the admin
             const notify = {
                 title: 'A new user has signed up',
@@ -73,7 +70,6 @@ router.post('/create_user', (req, res) => {
             });
 
         } else {
-            console.log(result);
             res.json({
                 status: false,
                 message: 'error',
@@ -94,12 +90,10 @@ router.post('/update_user', (req, res) => {
         return res.json({ status: false, message: Messages.wrongApi});
     }
     let data = req.body;
-    // console.log(data);
 
     const run = async (data) => {
         const client = new MongoClient(DB_URL);
         await client.connect();
-        console.log('connect...')
         const db = client.db();
         const collection = db.collection(Collections.USERS);
         // const insertData = {_id:data.uid ,    ...data, createdAt: new Date().toString()}
@@ -109,14 +103,12 @@ router.post('/update_user', (req, res) => {
         );
 
         if (result.modifiedCount === 1) {
-            console.log(result.modifiedCount);
             res.json({
                 status: true,
                 message: 'Profile updated successfully',
             });
 
         } else {
-            console.log(result);
             res.json({
                 status: false,
                 message: 'User not found or profile field not updated',
@@ -148,7 +140,6 @@ router.post('/update_user', (req, res) => {
                 console.error(err);
                 throw err;
             }
-            console.log('File created at:', filePath);
             run({
                 ...data, profile: filePath.replace('uploads', '')
             });

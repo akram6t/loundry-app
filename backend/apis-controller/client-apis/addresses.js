@@ -18,7 +18,6 @@ router.get('/addresses/:uid', (req, res) => {
   const run = async () => {
     const client = new MongoClient(DB_URL);
     await client.connect();
-    console.log('addresses get...');
     const db = client.db();
     const collection = db.collection(Collections.ADDRESSES);
     collection.find({ uid: uid }).toArray().then((result, err) => {
@@ -51,7 +50,6 @@ router.post('/add_address', (req, res) => {
   const collection = db.collection(Collections.ADDRESSES);
 
   collection.insertOne(data).then((result, err) => {
-    console.log('insert one');
     if (err) {
       res.status(500).send({ status: false, message: 'Error creating a new address' });
     } else {
@@ -66,7 +64,6 @@ router.post('/remove_address', (req, res) => {
   if (!ApiAuthentication(req, res)) {
     return res.json({ status: false, message: Messages.wrongApi });
   }
-  console.log('remove address');
   const objId = new ObjectId(req.body._id);
 
   const client = new MongoClient(DB_URL);

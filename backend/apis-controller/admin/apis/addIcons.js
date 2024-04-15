@@ -32,7 +32,6 @@ const addIcons = async (req, res) => {
                 console.error(err);
                 throw err;
             }
-            console.log('File created at:', filePath);
             run({
                 media: filePath.replace('uploads', '').replaceAll('\\', '/'), date: new Date().toISOString()
             });
@@ -43,18 +42,15 @@ const addIcons = async (req, res) => {
         await client.connect();
         const db = client.db();
         const collection = db.collection(Collections.MEDIA);
-        console.log(data);
         const result = await collection.insertOne(data);
 
         if (result.insertedId) {
-            console.log(result.insertedId);
             res.json({
                 status: true,
                 message: 'media added successfully',
             });
 
         } else {
-            console.log(result);
             res.json({
                 status: false,
                 message: 'error',

@@ -10,9 +10,7 @@ async function postNotification(req, res) {
   if(!ApiAuthentication(req, res)){
     return res.json({ status: false, message: Messages.wrongApi});
 }
-    // console.log("kdmskd");
     const { data, collection } = req.body;
-    console.log(data);
     const client = new MongoClient(DB_URL);
     await client.connect();
     const db = client.db();
@@ -24,7 +22,6 @@ async function postNotification(req, res) {
         delete data._id;
         const update = { $set: { ...data, updatedAt: new Date().toISOString() } }; // Use $set to update fields without overwriting
         const result = await col.updateOne(filter, update);
-        console.log('Updated documents:', result.modifiedCount);
         if(result.modifiedCount != 0){
             res.json({
                 status: true,
@@ -40,7 +37,6 @@ async function postNotification(req, res) {
         // Insert new document
         const newDocument = { ...data, date: new Date().toISOString() }; // Create a new document with data
         const result = await col.insertOne(newDocument);
-        console.log('Inserted document:', result.insertedId);
         if(result.insertedId){
             res.json({
                 status: true,

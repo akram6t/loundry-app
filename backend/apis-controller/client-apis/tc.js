@@ -16,7 +16,6 @@ router.get('/tc', (req, res) => {
     const run = async () => {
         const client = new MongoClient(DB_URL);
         await client.connect();
-        console.log('get tc...');
         const db = client.db();
         const collection = db.collection(Collections.TC);
         collection.find({status: 'Active'}).toArray().then((result, err) => {

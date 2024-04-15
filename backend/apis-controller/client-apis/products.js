@@ -21,7 +21,6 @@ router.get('/products/:shopid', (req, res) => {
     const run = async () => {
         const client = new MongoClient(DB_URL);
         await client.connect();
-        console.log('get products...')
         const db = client.db();
         const collection = db.collection(Collections.PRODUCTS);
         const query = { shopid: shopid, status: 'Active' };
@@ -39,7 +38,6 @@ router.get('/products/:shopid', (req, res) => {
                 message: `${err}`,
                 data: []
             })
-            console.log(err);
             client.close();
         })
 

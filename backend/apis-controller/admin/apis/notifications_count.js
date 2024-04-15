@@ -12,7 +12,7 @@ const adminNotificationCount = (req, res) => {
         const run = async () => {
             const client = new MongoClient(DB_URL);
             await client.connect();
-            console.log('admin notification count get...')
+            // console.log('admin notification count get...')
             const db = client.db();
             const collection = db.collection(Collections.ADMIN_NOTIFICATIONS);
             const query = { status: 'unread' };

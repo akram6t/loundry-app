@@ -17,7 +17,6 @@ router.get('/services', (req, res) => {
     const run = async () => {
         const client = new MongoClient(DB_URL);
         await client.connect();
-        console.log('get services');
         const db = client.db();
         const collection = db.collection(Collections.SERVICES);
         collection.find({status: 'Active'}).toArray().then((result, err) => {

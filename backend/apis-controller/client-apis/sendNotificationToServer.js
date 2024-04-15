@@ -14,7 +14,6 @@ const sendNotificationToServer = async (data) => {
     const insertData = { ...data, status: 'unread', date: new Date().toISOString() }
     const result = await collection.insertOne(insertData);
     if (result.insertedId) {
-        console.log(result.insertedId + " admin notification added");
         sendNotification(data);
         // res.json({
         //     status: true,
@@ -31,8 +30,8 @@ const sendNotificationToServer = async (data) => {
 }
 
 
+// send notification to the server
 async function sendNotification(data) {
-    console.log(data);
 }
 
 

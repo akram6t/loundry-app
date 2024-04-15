@@ -17,7 +17,6 @@ router.get('/orders_status', (req, res) => {
     const run = async () => {
         const client = new MongoClient(DB_URL);
         await client.connect();
-        console.log('get order status');
         const db = client.db();
         const collection = db.collection(Collections.ORDERSTATUS);
         collection.find().sort({position: 1}).toArray().then((result, err) => {

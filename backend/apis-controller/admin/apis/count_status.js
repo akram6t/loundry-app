@@ -38,7 +38,6 @@ async function countOrdersByStatus(req, res) {
       }
     ]).toArray();
 
-    console.log(counts);
     res.json({
       message: 'orders status get',
       status: true,
