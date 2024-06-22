@@ -11,8 +11,6 @@ import ProgressBar from "../../components/Other/ProgressBar";
 import axios from "axios";
 import { ImageItentifier } from "../../utils/ImageIdentifier";
 import { toast } from "react-toastify";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../firebase.config";
 import AppIndicator from "../../components/Other/AppIndicator";
 import { SetTitle } from '../../utils/SetTitle';
 
@@ -26,7 +24,6 @@ function CustomerDetails() {
     name: '',
     email: '',
     mobile: '',
-    password: '',
     status: status[0].label
   })
 
@@ -111,35 +108,6 @@ function CustomerDetails() {
     }
   }
 
-   function createUser() {
-     if(user?.email?.trim() === "" || user?.password?.trim() === ""){
-       toast.error('Email or password is empty');
-       return;
-      }
-      if(user?.name?.trim() === ""){
-        toast.error('Name is empty');
-        return;
-      }
-      if(user?.mobile?.trim() === ""){
-        toast.error('Mobile is empty');
-        return;
-      }
-      setLoading(true);
-      createUserWithEmailAndPassword(auth, user?.email?.trim(), user?.password?.trim())
-      .then((userCredential) => {
-        setLoading(false);
-        // Signed in 
-        const u = userCredential.user;
-        submitData(u.uid);
-      })
-      .catch((error) => {
-        setLoading(false);
-        const errorMessage = error.message;
-        console.log(errorMessage);
-        toast.error(errorMessage);
-      });
-  }
-
   if(uid && !user?._id){
       return <AppIndicator/>
   }
@@ -175,7 +143,7 @@ function CustomerDetails() {
                   <span className="text-red-600 text-md">*</span>
                 </label>
                 <input 
-                disabled={user?.uid ? true : false}
+                disabled={true}
                 value={user?.email}
                 onChange={(e) => handleChangeValue('email', e.target.value)}
                   id="defaultInput"
@@ -183,30 +151,6 @@ function CustomerDetails() {
                   name="defaultInput"
                   className="text-md placeholder-gray-500 px-4 rounded-lg border border-gray-200 w-full md:py-2 py-3 focus:outline-none focus:border-emerald-400 mt-1"
                   placeholder="Enter Customer Name"
-                />
-              </div>
-              {/* input end */}
-
-              {/* input start */}
-              <div className="relative">
-                <label htmlFor="defaultInput" className="font-bold text-sm text-gray-600">
-                  Password
-                  <span className="text-red-600 text-md">*</span>
-                </label>
-
-                {/* <div className="inline-flex items-center justify-center absolute left-0 top-[0.85rem] h-full w-10 text-gray-400">
-                  {/* <FontAwesomeIcon icon={faPhoneI} />  */}
-                {/* <span>+91 </span> */}
-                {/* </div>  */}
-                <input
-                disabled={user?.uid ? true : false}
-                  value={user?.password}
-                  onChange={(e) => handleChangeValue('password', e.target.value)}
-                  id="inputWithIcon"
-                  type="text"
-                  name="inputWithIcon"
-                  className="text-md placeholder-gray-500 px-4 rounded-lg border border-gray-200 w-full md:py-2 py-3 focus:outline-none focus:border-emerald-400 mt-1"
-                  placeholder="Enter Phone Number"
                 />
               </div>
               {/* input end */}
@@ -274,8 +218,8 @@ function CustomerDetails() {
             </div>
 
                           
-            <button onClick={() => user?.uid ? submitData(null) : createUser()} className="m-3 mb-5 hover:bg-opacity-80 active:bg-opacity-60 transition-all bg-emerald-600 text-gray-100 px-3 py-2 rounded-lg shadow-lg text-sm">
-              <FontAwesomeIcon className="mr-2" icon={!loading && faSave}/>{ loading ? <ProgressBar/> : uid ? 'Update' : 'Submit'}
+            <button onClick={() => user?.uid && submitData(null)} className="m-3 mb-5 hover:bg-opacity-80 active:bg-opacity-60 transition-all bg-emerald-600 text-gray-100 px-3 py-2 rounded-lg shadow-lg text-sm">
+              <FontAwesomeIcon className="mr-2" icon={!loading && faSave}/>{ loading ? <ProgressBar/> : 'Update'}
             </button>
 
 

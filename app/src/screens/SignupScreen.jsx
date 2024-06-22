@@ -91,7 +91,7 @@ const SignupScreen = ({ navigation }) => {
                         email:user.email.trim(), 
                         mobile: user.mobile.trim(),
                         notificationToken: token,
-                        password: user.password.trim()
+                    //     password: user.password.trim()
                     }, 
                     {headers: {"Content-Type": 'application/json', apikey: server.apikey}})
                 .then(response => {

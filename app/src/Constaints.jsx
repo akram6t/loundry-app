@@ -24,6 +24,8 @@ const routes = {
     TermsAndConditionsScreen: 'TermsAndConditionsScreen',
     SupportScreen: 'SupportScreen',
     NotificationsScreen: 'NotificationsScreen',
+
+    ResetPasswordScreen: 'ResetPasswordScreen'
 }
 
 const api = {

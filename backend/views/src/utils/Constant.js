@@ -34,9 +34,11 @@ const  routes = {
     ORDERS_STATUS: '/os',
     DATE_TIMING: '/date_time',
 
-    LOGIN: '/auth/login',
     NOTIFICATIONS: '/notifications',
-    MESSAGES: '/messages'
+    MESSAGES: '/messages',
+
+    LOGIN: '/auth/login',
+    RESETPASSWORD: '/auth/reset_password'
 
 }
 
@@ -65,6 +67,7 @@ export const URL_GET_INCOME_CHART = `${BASE_URL}/admin/apis/income_chart`;
 export const URL_POST_MEDIA = `${BASE_URL}/admin/apis/add_media`;
 
 export const URL_FORGOT_PASSWORD = `${BASE_URL}/admin/apis/forgot_password`;
+export const URL_RESET_PASSWORD = `${BASE_URL}/admin/apis/reset_password`;
 export const URL_CHECK_IF_LOGIN = `${BASE_URL}/admin/apis/check_login`;
 export const URL_ADMIN_LOGIN = `${BASE_URL}/admin/apis/admin_login`;
 
@@ -97,4 +100,6 @@ export const Collections = {
     ADMIN_NOTIFICATIONS: 'admin_notifications'
 }
 
-export {routes, URL_GET_LIST};
+const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+export {routes, URL_GET_LIST, monthNames};

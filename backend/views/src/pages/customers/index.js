@@ -15,11 +15,11 @@ import axios from "axios";
 import { SetTitle } from '../../utils/SetTitle';
 
 function Customers() {
-  const [ customersList, setCustomersList ] = useState([]);
+  const [customersList, setCustomersList] = useState([]);
   const [sidebarToggle] = useOutletContext();
   const [loading, setLoading] = useState(false);
   const [dateFilter, setDateFilter] = useState(filterDate[3]);
-  const [itemsPerPage, setItemsPerPage] = useState(5);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -95,9 +95,9 @@ function Customers() {
               <h2 className="font-bold text-3xl">Customers</h2>
               <Linking currentPage="Customers" data={LINKINGDATA().CUSTOMER_PAGE}/>
             </div>
-            <Link to={routes.CUSTOMERS_CREATE} className="bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 transition-all text-gray-100 px-3 py-2 rounded-lg shadow-lg text-md">
-              + Add New
-            </Link>
+            {/* <Link to={routes.CUSTOMERS_CREATE} className="bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 transition-all text-gray-100 px-3 py-2 rounded-lg shadow-lg text-md"> */}
+              {/* + Add New */}
+            {/* </Link> */}
           </div>
           {/* Topbar End */}
 

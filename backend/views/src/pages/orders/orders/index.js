@@ -20,7 +20,7 @@ function Orders() {
   const [sidebarToggle] = useOutletContext();
   const [loading, setLoading] = useState(false);
   const [dateFilter, setDateFilter] = useState(filterDate[2]);
-  const [itemsPerPage, setItemsPerPage] = useState(5);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [order_status, set_order_status] = useState(null);
@@ -144,7 +144,7 @@ function Orders() {
 
             {/* FilterBar Start */}
             <div className="flex items-center justify-between pb-3">
-              <EntryOptions onChange={(value) => setItemsPerPage(value)} />
+              <EntryOptions itemsPerPage={itemsPerPage} onChange={(value) => setItemsPerPage(value)} />
               <div className="flex flex-wrap items-center justify-end gap-y-2 md:flex md:items-center md:gap-x-4">
                 <SearchTable searchTerm={searchTerm} handleSearch={(e) => handleSearch(e)} />
                 <FilterDropDown filter={dateFilter} setFilter={(value) => setDateFilter(value)} />

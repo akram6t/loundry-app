@@ -5,7 +5,6 @@ import Dashboard from "./pages/dashboard/index";
 import AuthLayout from "./components/Layout/AuthLayout";
 import GuestLayout from "./components/Layout/GuestLayout";
 import Login from "./pages/auth/Login";
-import { useNavigate } from "react-router-dom";
 import Orders from './pages/orders/orders/index';
 import { routes } from "./utils/Constant";
 import OrderDetails from "./pages/orders/details";
@@ -33,7 +32,7 @@ import Notifications from "./pages/notification";
 import Messages from "./pages/messages";
 import GetIp from "./utils/GetIp";
 import CheckToken from "./utils/CheckIfLogin";
-
+import ResetPassword from "./pages/reset_password";
 
 function App() {
   const [token, setToken] = useState(false);
@@ -106,7 +105,8 @@ function App() {
         {/* <Route path="/profile" element={<Blank />}></Route> */}
       </Route>
       <Route path="/auth" element={<GuestLayout />}>
-        <Route path="/auth/login" element={<Login setToken={token => setToken(token)} />}></Route>
+        <Route path={routes.LOGIN} element={<Login setToken={token => setToken(token)} />}></Route>
+        <Route path={routes.RESETPASSWORD} element={<ResetPassword />}></Route>
       </Route>
     </Routes>
   );

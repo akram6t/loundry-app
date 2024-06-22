@@ -1,6 +1,7 @@
 const { MongoClient, ObjectId } = require('mongodb');
 const  { Collections, Messages } = require('../../../Constaints');
 const { ApiAuthentication } = require('../../../utils/ApiAuthentication');
+const { matchPassword } = require('../../../utils/password');
 
 const DB_URL = process.env.DB_URL;
 
@@ -20,17 +21,17 @@ const adminLogin = async (req, res) => {
 
     const [admin] = await collection.find().toArray();
 
-    const passwordCondition = admin?.tempPassword === "" ? admin?.password === password : (admin?.password === password || admin?.tempPassword === password)
+    const passwordCondition = await matchPassword(password, admin?.password);
 
     if((admin?.email === login || admin?.username === login) && passwordCondition){
-        res.send({
+         await collection.updateOne({_id: new ObjectId(admin?._id)},{ $set: { authToken: authToken } })
+        return res.send({
             status: true,
             message: 'login'
         })
-        await collection.updateOne({_id: new ObjectId(admin?._id)},{ $set: { authToken: authToken } })
 
     }else{
-        res.send({
+        return res.send({
             status: false,
             message: 'Login and Password is Wrong?'
         })

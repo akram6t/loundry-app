@@ -95,7 +95,7 @@ function OrdersTable({
           </TableCell>
           <TableCell dataLabel="AMOUNT" showLabel={true}>
             <span className="font-medium text-sm text-gray-900">
-              { row.amount <= 0 ? 'Not set' : `₹ ${row?.amount}` }
+              { row.amount <= 0 ? 'Set amount' : `₹ ${row?.amount}` }
             </span>
           </TableCell>
           <TableCell dataLabel="PAYMENT" showLabel={true}>
@@ -106,7 +106,7 @@ function OrdersTable({
                 Total amount:
                 <span className="ml-2 font-bold">
 
-                { row.amount <=0 ? 'Not set' : (`₹ ${row.amount +
+                { row.amount <=0 ? 'Set amount' : (`₹ ${row.amount +
                     row.service_fee +
                     (row.addons?.reduce(
                       (total, item) => total + item.price,

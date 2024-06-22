@@ -34,7 +34,7 @@ function LoginIndex({ setToken }) {
         }, HEADER_API);
 
         if (response.status === 200) {
-          console.log(response.data);
+          // console.log(response.data);
           setLoading(false);
           const { status, message } = response.data;
           if (status) {
