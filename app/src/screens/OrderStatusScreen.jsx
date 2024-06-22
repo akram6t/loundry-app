@@ -105,7 +105,7 @@ const OrdersScreen = ({ navigation }) => {
         let co = false;
         status.forEach((status, index) => {
             if (status.tag === item.order_status) {
-                console.log("cancelledStep: "+cancelledStep);
+               //  console.log("cancelledStep: "+cancelledStep);
                 if (index <= cancelledStep) {
                     co = true;
                 }
@@ -134,7 +134,7 @@ const OrdersScreen = ({ navigation }) => {
 
     const cancelStatusFind = () => {
         const updateStatus = status.find((e) => e.type==='cancelled').tag;
-        console.log(updateStatus);
+     //    console.log(updateStatus);
         return updateStatus;
     }
 

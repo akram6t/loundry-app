@@ -40,7 +40,7 @@ const AddressScreen = ({ navigation }) => {
             getAddresses();
 
             return () => {
-                console.log('ScreenA unfocused');
+               //  console.log('ScreenA unfocused');
             };
         }, [])
     );

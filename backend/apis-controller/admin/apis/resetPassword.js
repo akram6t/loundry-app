@@ -7,6 +7,9 @@ const DB_URL = process.env.DB_URL;
 
 function resetPassword(req, res) {
      const { token, newPassword } = req.body;
+
+     try{
+
      if (!token || !newPassword) {
           return res.status(503).json({ status: false, message: 'Invalid password' });
      }
@@ -31,6 +34,14 @@ function resetPassword(req, res) {
 
           }
      });
+
+}catch(err){
+     return res.status(500).json({ 
+          status: false,
+          message: err,
+      });
+}
+
 
 }
 

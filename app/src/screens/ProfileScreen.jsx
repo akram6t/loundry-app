@@ -140,7 +140,6 @@ const ProfileScreen = ({ navigation }) => {
       setLoader(false);
       const {status, data} = result.data;
       if(status){
-        console.log('fgh');
         if(data == null){
           getUser();
         }else{

@@ -21,7 +21,6 @@ const notificationsApiRouter = require('./apis-controller/client-apis/notificati
 const quariesApiRouter = require('./apis-controller/client-apis/queries');
 
 const adminApisRouter = require('./apis-controller/admin/adminApis');
-const { matchPassword } = require('./utils/password');
 
 app.use(cors());
 app.use(bodyParser.urlencoded({extended: true, limit: '5mb'}));
@@ -52,19 +51,14 @@ app.use('/apis', quariesApiRouter);
 
 app.use('/admin/apis', adminApisRouter);
 
-// matchPassword('212121', '$2a$10$/Pspy5Dv5KQxhGj7r3pzSuqoAmxh487o26FaLa.IsYaKcNt0CZbUq').then(function (response){
-     // console.log(response);
-// });
-
-
 
 // Serve static files from the 'root/client/build' folder
-app.use(express.static(path.join(__dirname, 'views', 'build')));
+app.use(express.static(path.join(__dirname, 'web', 'build')));
 
 // Handle other routes by serving the index.html file
 // views (react js) directory is always relative to the root of the application.
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'views', 'build', 'index.html'));
+  res.sendFile(path.join(__dirname, 'web', 'build', 'index.html'));
 });
 
 

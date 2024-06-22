@@ -52,7 +52,7 @@ const HomeScreen = ({ navigation }) => {
           setLoader(false);
           const { status, data } = result.data;
           if (status) {
-            console.log('get user...');
+          //   console.log('get user...');
             if (data == null) {
               getUser();
             } else {
@@ -102,7 +102,7 @@ const HomeScreen = ({ navigation }) => {
           if (status) {
             const images = data.map(obj => obj.image)
             setBanners(images);
-            console.log('get banners...');
+          //   console.log('get banners...');
           }
         }).catch(err => {
           setLoader(false);
@@ -122,7 +122,7 @@ const HomeScreen = ({ navigation }) => {
           const { status, data } = result.data;
           if (status) {
             setServices([...data]);
-            console.log('get services...');
+          //   console.log('get services...');
           }
         }).catch(err => {
           setLoader(false);
@@ -142,7 +142,7 @@ const HomeScreen = ({ navigation }) => {
           const { status, data } = result.data;
           if (status) {
             setShops([...data]);
-            console.log('get shops...');
+          //   console.log('get shops...');
             // console.log(data);
           }
         }).catch(err => {
@@ -165,7 +165,7 @@ const HomeScreen = ({ navigation }) => {
         const { status, data } = result.data;
         if (status) {
           setunread(typeof data === 'string' ? parseInt(data) : data);
-          console.log('notifications count: '+data);
+          // console.log('notifications count: '+data);
         }
       }).catch(err => {
         // setMessage(`${err}`);
@@ -231,6 +231,8 @@ const HomeScreen = ({ navigation }) => {
 
   return (
     <SafeAreaView style={{ backgroundColor: theme.colors.background, flex: 1 }}>
+
+    {/* Appbar start */}
       <View style={{ paddingHorizontal: 8, paddingVertical: 10, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
         <View>
           <Entypo size={28} color={MD2Colors.red600} name="location-pin" />
@@ -251,8 +253,6 @@ const HomeScreen = ({ navigation }) => {
             <Appbar.Action
               icon={unread ? 'bell' : 'bell-outline'}
               accessibilityLabel="TagChat"
-            // onPress={() => history.push('/notes')}
-            // {...commonProps}
             />
           </TouchableOpacity>
           <TouchableOpacity activeOpacity={0.8} onPress={() => navigation.navigate(routes.ProfileScreen)}>
@@ -262,7 +262,6 @@ const HomeScreen = ({ navigation }) => {
       </View>
       {/* appbar end */}
 
-      {/* <Button onPress={() => getAddFromLatLon()}>getlatlon</Button> */}
 
       <ScrollView refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />} overScrollMode='never' style={{ flex: 1 }}>
 
@@ -313,7 +312,7 @@ const HomeScreen = ({ navigation }) => {
 
         <Divider />
         {/* Carousel */}
-        <Carousel images={banners.map(img => ImageIdentifier(img, server))} />
+        <Carousel style={{ marginBottom: 20 }} images={banners.map(img => ImageIdentifier(img, server))} />
 
       </ScrollView>
 
@@ -366,16 +365,3 @@ const HomeScreen = ({ navigation }) => {
 }
 
 export default HomeScreen
-
-
-// const bottomRoutes = [
-// { key: 'home', title: 'Home', focusedIcon: 'heart', unfocusedIcon: 'heart-outline'},
-// { key: 'profile', title: 'Recents', focusedIcon: 'history' },
-// ];
-
-
-// const images = [
-//   "https://media.istockphoto.com/id/1247884083/vector/laundry-service-room-vector-illustration-washing-and-drying-machines-with-cleansers-on-shelf.jpg?s=612x612&w=0&k=20&c=myaNEKlqX7R--bzWGDoMI7PhdxG_zdQTKYEBlymJQGk=",
-//   "https://images.pexels.com/photos/5591581/pexels-photo-5591581.jpeg?auto=compress&cs=tinysrgb&w=800",
-// ];
-

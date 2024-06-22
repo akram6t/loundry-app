@@ -1,12 +1,11 @@
 import { useTheme } from "react-native-paper"
 import { View } from 'react-native';
 import { SliderBox } from 'react-native-image-slider-box';
-import { ImageIdentifier } from "../utils/ImageIdentifier";
 
-const Carousel = ({images}) => {
+const Carousel = ({ images, style }) => {
     const theme = useTheme();
     return(
-        <View style={{ marginTop: 20 }}>
+        <View style={{ marginTop: 20, ...style }}>
         <SliderBox
           images={images}
           autoPlay

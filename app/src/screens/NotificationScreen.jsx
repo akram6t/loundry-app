@@ -2,11 +2,10 @@
 import { View, StyleSheet, Text, TouchableOpacity, ScrollView, FlatList, Image, RefreshControl } from 'react-native'
 import React, { useState, useEffect } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { Icon, MD2Colors, Button, TouchableRipple, useTheme, Snackbar } from 'react-native-paper';
+import { MD2Colors, Button, useTheme, Snackbar } from 'react-native-paper';
 import { } from 'react-native-paper';
 import { useSelector } from 'react-redux';
-import ImageIdentifier from './../utils/ImageIdentifier';
-import { Entypo, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
+import { Entypo, MaterialIcons } from '@expo/vector-icons';
 import { formatDate } from './../utils/FormatDate';
 import { formatTime } from './../utils/FormatTime';
 import { api } from '../Constaints';
@@ -16,7 +15,6 @@ import { auth } from '../firebaseConfig';
 import Loader from '../components/Loader';
 
 const NotificationScreen = ({ navigation }) => {
-  const theme = useTheme();
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
   const [snackbar, setSnackbar] = useState(false);

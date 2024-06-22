@@ -5,7 +5,8 @@ const { MongoClient } = require('mongodb');
 const { Collections, Messages } = require('./../../Constaints');
 const { ApiAuthentication } = require('./../../utils/ApiAuthentication');
 const sendNotificationToServer = require('./sendNotificationToServer');
-
+const AsyncLock = require('async-lock');
+const lock = new AsyncLock();
 
 const DB_URL = process.env.DB_URL;
 
@@ -48,6 +49,7 @@ router.post('/add_order', (req, res) => {
         return res.json({ status: false, message: Messages.wrongApi });
     }
     const data = req.body;
+
     const run = async (order_id) => {
         const client = new MongoClient(DB_URL);
         await client.connect();
@@ -96,7 +98,14 @@ router.post('/add_order', (req, res) => {
         run(paddedCount);
     }
 
-    beforeGetDocsCount();
+    // lock async codes for concurrency orders problem
+    lock.acquire('key', function(done){
+     beforeGetDocsCount();
+     done();
+    }, 
+     function(err, ret){
+     console.log(err);
+    })
 
 });
 
