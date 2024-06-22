@@ -13,6 +13,10 @@ This repository contains the server-side code, client-side admin panel, and the 
 - **Admin Panel Demo**: [Admin Panel](https://akram.devharda.tech)
 - **React Native APK**: [Download APK](https://drive.google.com/file/d/1p-EWww4OkbTcrlavTMkFtv9Aaw-DG-LB/view?usp=drive_link)
 
+### Admin Panel Credentials
+- ***Username***: `admin`
+- ***Password***: `admin123`
+
 ## Project Setup
 
 ### Server Side
