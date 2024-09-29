@@ -10,8 +10,7 @@ This repository contains the server-side code, client-side admin panel, and the 
 
 ## Demo Links
 
-- **Admin Panel Demo**: [Demo 1](https://loundry-app.onrender.com/) [Demo 2](
-https://5000-cs-61595037-5606-43e9-ac12-7a03988b8610.cs-asia-southeast1-fork.cloudshell.dev/expense/category)
+- **Admin Panel Demo**: [Demo 1](https://loundry-app.onrender.com/)
 - **React Native APK**: [Download APK](https://drive.google.com/file/d/1p-EWww4OkbTcrlavTMkFtv9Aaw-DG-LB/view?usp=drive_link)
 
 ### Admin Panel Credentials
